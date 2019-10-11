@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2019.3.19)  11 OCT 2019 10:01
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2019.3.19)  11 OCT 2019 10:17
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**OAEI_2018.tex
-(./OAEI_2018.tex
+**OAEI_2019.tex
+(./OAEI_2019.tex
 LaTeX2e <2018-04-01> patch level 2
 Babel <3.18> and hyphenation patterns for 84 language(s) loaded.
 (./llncs.cls
@@ -163,12 +163,12 @@ Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \@floatcapt=\box57
 )
 \@indexfile=\write3
-\openout3 = `OAEI_2018.idx'.
+\openout3 = `OAEI_2019.idx'.
 
 
-Writing index file OAEI_2018.idx
-(./OAEI_2018.aux)
-\openout1 = `OAEI_2018.aux'.
+Writing index file OAEI_2019.idx
+(./OAEI_2019.aux)
+\openout1 = `OAEI_2019.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 7.
 LaTeX Font Info:    ... okay on input line 7.
@@ -203,7 +203,7 @@ LaTeX Font Warning: Font shape `OMS/cmtt/m/n' undefined
 
 
 {/usr/local/texlive/2018/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-[2] [3] [4] [5] [6] [7] (./OAEI_2018.aux)
+[2] [3] [4] [5] [6] [7] (./OAEI_2019.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
@@ -226,7 +226,7 @@ l/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/t
 exlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/tex
 live/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texl
 ive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb>
-Output written on OAEI_2018.pdf (7 pages, 145091 bytes).
+Output written on OAEI_2019.pdf (7 pages, 144978 bytes).
 PDF statistics:
  68 PDF objects out of 1000 (max. 8388607)
  48 compressed objects within 1 object stream
