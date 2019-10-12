@@ -3,11 +3,12 @@
 \usepackage{url}
 \usepackage{makecell}
 \usepackage{float}
+\usepackage{multirow}
 \makeindex
 \begin{document}
 \mainmatter              % start of the contributions
 \title{Lily Results for OAEI 2019}
-\author{Jiangheng Wu$^{1}$, Peng Wang$^{1}$, Zhe Pan$^{1}$, Ce Zhang$^{1}$}
+\author{Jiangheng Wu, Peng Wang, Zhe Pan, Ce Zhang}
 \tocauthor{Jiangheng Wu, Peng Wang, Zhe Pan, Ce Zhang}
 
 \index{Wu, Jiangheng}
@@ -16,7 +17,7 @@
 \index{Zhang, Ce}
 
 \institute{
-	$^{1}$ School of Computer Science and Engineering, Southeast University, China \\
+	School of Computer Science and Engineering, Southeast University, China \\
 	\email{ \{ms, pwang\} @ seu.edu.cn }
 }
 \maketitle
@@ -104,31 +105,48 @@ iasted-sigkdd & 0.56 & 0.67 & 0.61 \\ \hline
 \end{table}
 Compared with the result in OAEI 2011 \cite{lily_oaei2011}, there is a significant improvement of mean Precision, Recall and F-Measure, from 0.36, 0.47 and 0.41 to 0.59, 0.53 and 0.56, respectively. Besides, all the tasks share the same configurations, so it is possible to generate better alignments by assigning the most suitable parameters for each task. We will continue to enhance this feature. \par
 
-\subsection{Largebio track}
-We submitted alignments  \par
-
-\subsection{Phenotype track}
-We submitted alignments  \par
-
-\subsection{Biodiv track}
-We submitted alignments  \par
-
 \subsection{Spimbench track}
 This tack is an instance-mactching tack which aims to match instances of creative works between two boxes. And ontology instances are described through 22 classes, 31 DatatypeProperty and 85 ObjectProperty properties. \par
 There are about 380 instances and 10000 triples in sandbox, and about 1800 CWs and 50000 triples in mainbox.\par
 \begin{table}[H]
-\caption{The performance in the spimbench task} \label{tab:perf_im_author_dis}
+\caption{Performance in the spimbench task} \label{tab:perf_im_author_dis}
 \centering
-\begin{tabular}{c|c|c|c|c}
+\begin{tabular}{c|c|c|c|c|c}
 \Xhline{1.5pt}
-Matcher & Scale & Precision & Recall & F-Measure \\ \hline
+Track & Matcher & Precision & Recall & F-Measure & Time  \\ \hline
 \Xhline{0.5pt}
-Lily & sandbox & 0.84 & 1.00 & 0.91 \\ \hline
-Lily & mainbox & 0.84 & 1.00 & 0.92 \\
+\multirow{4}{*}{SANDBOX } & AML & 0.8349 & 0.8963 & 0.8645 & 6223 \\ 
+\cline{2-6}
+& FTRL-IM & 0.8543 & \textbf{1.000} & \textbf{0.9214} & \textbf{1474} \\ 
+\cline{2-6}
+& LogMap & \textbf{0.9383} & 0.7625 & 0.8413 & 6919 \\ 
+\cline{2-6}
+& Lily & 0.8494 & \textbf{1.000} & 0.9186 & 2032 \\ 
+\hline
+
+\multirow{4}{*}{MAINBOX} & AML & 0.8386 & 0.8835 & 0.8605 & 39515 \\ 
+\cline{2-6}
+& FTRL-IM & 0.8558 & 0.9980 & 0.9215 & \textbf{2155} \\ 
+\cline{2-6}
+& LogMap & \textbf{0.8926} & 0.7095 & 0.7906 & 26920 \\
+\cline{2-6}
+& Lily & 0.8546 & \textbf{1.000} & \textbf{0.9216} & 3667 \\ 
+
 \Xhline{1.5pt}
+
 \end{tabular}
 \end{table}
-As is shown in Table \ref{tab:perf_im_author_dis}, Lily utilized almost the same startegy to handle these two different size tasks. We found that creative works in this task was rich in text information such as titles, descriptions and so on. However, garbled texts and messy codes were mixed up with normal texts. And Lily relied too much on text similarity calculation  and set a low threshold in this task, which accounted for the low percision.\par
+
+Lily utilized almost the same startegy to handle these two different size tasks. 
+We found that creative works in this task was rich in text information such as titles, descriptions and so on. 
+However, garbled texts and messy codes were mixed up with normal texts. 
+And Lily relied too much on text similarity calculation and set a low threshold in this task, which accounted for the low precision.\par
+
+As is shown in Table \ref{tab:perf_im_author_dis},
+Lily outperforms the others in mainbox. 
+And we suppose that Lily and FTRL-IM share similar strategies in this track as their results are close.
+Meanwhile, experiments shows that simple ensemble methods and a low threshold contribute to increase of matching efficiency.
+Nevertheless, compared with FTRL-IM, there is still potential for Lily to speed up in process of matching. \par
 
 
 \section{General comments}
