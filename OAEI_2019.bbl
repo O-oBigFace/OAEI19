@@ -1,0 +1,73 @@
+\begin{thebibliography}{10}
+\providecommand{\url}[1]{\texttt{#1}}
+\providecommand{\urlprefix}{URL }
+\providecommand{\doi}[1]{https://doi.org/#1}
+
+\bibitem{wang2009effective}
+Wang, P., Xu, B.: An effective similarity propagation model for matching
+  ontologies without sufficient or regular linguistic information. In: The 4th
+  Asian Semantic Web Conference (ASWC2009), Shanghai, China (2009)
+
+\bibitem{wang2012debugging}
+Wang, P., Xu, B.: Debugging ontology mappings: a static approach. Computing and
+  Informatics  \textbf{27}(1),  21--36 (2012)
+
+\bibitem{yang2014ontology}
+Yang, P., Wang, P., Ji, L., Chen, X., Huang, K., Yu, B.: Ontology matching
+  tuning based on particle swarm optimization: Preliminary results. In: Chinese
+  Semantic Web and Web Science Conference. pp. 146--155. Springer (2014)
+
+\bibitem{lily_oaei2018}
+Tang, Y., Wang, P., Pan, Z., Liu, H.: Lily results for {OAEI} 2018. In:
+  Proceedings of the 13th International Workshop on Ontology Matching
+  co-located with the 17th International Semantic Web Conference, OM@ISWC 2018,
+  Monterey, CA, USA, October 8, 2018. pp. 179--186 (2018)
+
+\bibitem{lily_oaei2016}
+Wang, P., Wang, W.: Lily results for {OAEI} 2016. In: Proceedings of the 11th
+  International Workshop on Ontology Matching co-located with the 15th
+  International Semantic Web Conference {(ISWC} 2016), Kobe, Japan, October 18,
+  2016. pp. 178--184 (2016)
+
+\bibitem{lily_oaei2015}
+Wang, W., Wang, P.: Lily results for {OAEI} 2015. In: Proceedings of the 10th
+  International Workshop on Ontology Matching collocated with the 14th
+  International Semantic Web Conference {(ISWC} 2015), Bethlehem, PA, USA,
+  October 12, 2015. pp. 162--170 (2015)
+
+\bibitem{lily_oaei2011}
+Wang, P.: Lily results on {SEALS} platform for {OAEI} 2011. In: Proceedings of
+  the 6th International Workshop on Ontology Matching, Bonn, Germany, October
+  24, 2011 (2011)
+
+\bibitem{lily_oaei2009}
+Wang, P., Xu, B.: Lily: Ontology alignment results for {OAEI} 2009. In:
+  Proceedings of the 4th International Workshop on Ontology Matching
+  {(OM-2009)} collocated with the 8th International Semantic Web Conference
+  {(ISWC-2009)} Chantilly, USA, October 25, 2009 (2009)
+
+\bibitem{lily_oaei2008}
+Wang, P., Xu, B.: Lily: Ontology alignment results for {OAEI} 2008. In:
+  Proceedings of the 3rd International Workshop on Ontology Matching
+  {(OM-2008)} Collocated with the 7th International Semantic Web Conference
+  (ISWC-2008), Karlsruhe, Germany, October 26, 2008 (2008)
+
+\bibitem{lily_oaei2007}
+Wang, P., Xu, B.: {LILY:} the results for the ontology alignment contest {OAEI}
+  2007. In: Proceedings of the 2nd International Workshop on Ontology Matching
+  {(OM-2007)} Collocated with the 6th International Semantic Web Conference
+  {(ISWC-2007)} and the 2nd Asian Semantic Web Conference (ASWC-2007), Busan,
+  Korea, November 11, 2007 (2007)
+
+\bibitem{subgraph}
+Wang, P., Xu, B., Zhou, Y.: Extracting semantic subgraphs to capture the real
+  meanings of ontology elements. Tsinghua Science and Technology
+  \textbf{15}(6),  724--733 (2010)
+
+\bibitem{lom_redanc}
+Wang, P., Zhou, Y., Xu, B.: Matching large ontologies based on reduction
+  anchors. In: {IJCAI} 2011, Proceedings of the 22nd International Joint
+  Conference on Artificial Intelligence, Barcelona, Catalonia, Spain, July
+  16-22, 2011. pp. 2343--2348 (2011)
+
+\end{thebibliography}

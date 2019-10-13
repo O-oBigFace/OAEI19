@@ -1,9 +1,22 @@
-\documentclass{llncs}
+% This is samplepaper.tex, a sample chapter demonstrating the
+% LLNCS macro package for Springer Computer Science proceedings;
+% Version 2.20 of 2017/10/04
+%
+\documentclass[runningheads]{llncs}
+%
+\usepackage{graphicx}
 \usepackage{makeidx}  % allows for indexgeneration
 \usepackage{url}
 \usepackage{makecell}
 \usepackage{float}
 \usepackage{multirow}
+\usepackage{cite}
+% Used for displaying a sample figure. If possible, figure files should
+% be included in EPS format.
+%
+% If you use the hyperref package, please uncomment the following line
+% to display URLs in blue roman font according to Springer's eBook style:
+% \renewcommand\UrlFont{\color{blue}\rmfamily}
 \makeindex
 \begin{document}
 \mainmatter              % start of the contributions
@@ -18,55 +31,75 @@
 
 \institute{
 	School of Computer Science and Engineering, Southeast University, China \\
-	\email{ \{ms, pwang\} @ seu.edu.cn }
+	\email{ \{jiangh\_wu, pwang\} @ seu.edu.cn }
 }
 \maketitle
 
 \begin{abstract}
-This paper presents the results of Lily in the ontology alignment contest OAEI 2019. As a comprehensive ontology matching system, Lily is intended to participate in four tracks of the contest: benchmark, conference, anatomy, largebio, phenotype, biodiv and spimbench. The specific techniques used by Lily will be introduced briefly. The strengths and weaknesses of Lily will also be discussed.
+This paper presents the results of Lily in the ontology alignment contest OAEI 2019. 
+As a comprehensive ontology matching system, Lily is intended to participate in three tracks of the contest: anatomy, conference, and spimbench. 
+The specific techniques used by Lily will be introduced briefly. 
+The strengths and weaknesses of Lily will also be discussed.
 \end{abstract}
 
 \section{Presentation of the system}
-With the use of hybrid matching strategies, Lily, as an ontology matching system, is capable of solving some issues related to heterogeneous ontologies. It can process normal ontologies, weak informative ontologies \cite{simprop}, ontology mapping debugging \cite{om_dbg}, and ontology matching tunning \cite{param_tuning}, in both normal and large scales. In previous OAEI contests \cite{lily_oaei2009,lily_oaei2008,lily_oaei2007}, Lily has achieved preferable performances in some tasks, which indicated its effectiveness and wideness of availability. \par
+With the use of hybrid matching strategies, Lily, as an ontology matching system, is capable of solving some issues related to heterogeneous ontologies. 
+It can process normal ontologies, weak informative ontologies \cite{wang2009effective}, ontology mapping debugging \cite{wang2012debugging}, and ontology matching tunning \cite{yang2014ontology}, in both normal and large scales. 
+In previous OAEI contests \cite{lily_oaei2018, lily_oaei2016, lily_oaei2015, lily_oaei2011, lily_oaei2009,lily_oaei2008,lily_oaei2007}, Lily has achieved preferable performances in some tasks, which indicated its effectiveness and wideness of availability. \par
 
 \subsection{State, purpose, general statement}
-The core principle of matching strategies of Lily is utilizing the useful information correctly and effectively. Lily combines several effective and efficient matching techniques to facilitate alignments. There are five main matching strategies: (1) Generic Ontology Matching (GOM) is used for common matching tasks with normal size ontologies. (2) Large scale Ontology Matching (LOM) is used for the matching tasks with large size ontologies. (3) Instance Ontology Matching (IOM) is used for instance matching tasks. (4) Ontology mapping debugging is used to verify and improve the alignment results. (5) Ontology matching tuning is used to enhance overall performance. \par
-The matching process mainly contains three steps: (1) Pre-processing, when Lily parses ontologies and prepares the necessary information for subsequent steps. Meanwhile, the ontologies will be generally analyzed, whose characteristics, along with studied datasets, will be utilized to determine parameters and strategies. (2) Similarity computing, when Lily uses special methods to calculate the similarities between elements from different ontologies. (3) Post-processing, when alignments are extracted and refined by mapping debugging. \par
+The core principle of matching strategies of Lily is utilizing the useful information correctly and effectively. 
+Lily combines several effective and efficient matching techniques to facilitate alignments. 
+There are five main matching strategies: 
+(1) Generic Ontology Matching (GOM) is used for common matching tasks with normal size ontologies. 
+(2) Large scale Ontology Matching (LOM) is used for the matching tasks with large size ontologies. 
+(3) Instance Ontology Matching (IOM) is used for instance matching tasks. 
+(4) Ontology mapping debugging is used to verify and improve the alignment results. 
+(5) Ontology matching tuning is used to enhance overall performance. \par
+The matching process mainly contains three steps: 
+(1) Pre-processing, when Lily parses ontologies and prepares the necessary information for subsequent steps. 
+Meanwhile, the ontologies will be generally analyzed, whose characteristics, along with studied datasets, will be utilized to determine parameters and strategies. 
+(2) Similarity computing, when Lily uses special methods to calculate the similarities between elements from different ontologies. 
+(3) Post-processing, when alignments are extracted and refined by mapping debugging. \par
 In this year, some algorithms and matching strategies of Lily have been modified for higher efficiency, and adjusted for brand-new matching tasks like Author Recognition and Author Disambiguation in the Instance Matching track. \par
 
 \subsection{Specific techniques used}
-Lily aims to provide high quality 1:1 concept pair or property pair alignments. The main specific techniques used by Lily are as follows. \par
+Lily aims to provide high quality 1:1 concept pair or property pair alignments. 
+The main specific techniques used by Lily are as follows. \par
 \subsubsection{Semantic subgraph} An element may have heterogeneous semantic interpretations in different ontologies. Therefore, understanding the real local meanings of elements is very useful for similarity computation, which are the foundations for many applications including ontology matching. Therefore, before similarity computation, Lily first describes the meaning for each entity accurately. However, since different ontologies have different preferences to describe their elements, obtaining the semantic context of an element is an open problem. The semantic subgraph was proposed to capture the real meanings of ontology elements \cite{subgraph}. To extract the semantic subgraphs, a hybrid ontology graph is used to represent the semantic relations between elements. An extracting algorithm based on an electrical circuit model is then used with new conductivity calculation rules to improve the quality of the semantic subgraphs. It has been shown that the semantic subgraphs can properly capture the local meanings of elements \cite{subgraph}. \par
 Based on the extracted semantic subgraphs, more credible matching clues can be discovered, which help reduce the negative effects of the matching uncertainty. \par
 \subsubsection{Generic ontology matching method} The similarity computation is based on the semantic subgraphs, which means all the information used in the similarity computation comes from the semantic subgraphs. Lily combines the text matching and structure matching techniques. \par
 Semantic Description Document (SDD) matcher measures the literal similarity between ontologies. A semantic description document of a concept contains the information about class hierarchies, related properties and instances. A semantic description document of a property contains the information about hierarchies, domains, ranges, restrictions and related instances. For the descriptions from different entities, the similarities of the corresponding parts will be calculated. Finally, all separated similarities will be combined with the experiential weights. \par
-\subsubsection{Matching weak informative ontologies} Most existing ontology matching methods are based on the linguistic information. However, some ontologies may lack in regular linguistic information such as natural words and comments. Consequently the linguistic-based methods will not work. Structure-based methods are more practical for such situations. Similarity propagation is a feasible idea to realize the structure-based matching. But traditional propagation strategies do not take into consideration the ontology features and will be faced with effectiveness and performance problems. Having analyzed the classical similarity propagation algorithm, \textit{Similarity Flood}, we proposed a new structure-based ontology matching method \cite{simprop}. This method has two features: (1) It has more strict but reasonable propagation conditions which lead to more efficient matching processes and better alignments. (2) A series of propagation strategies are used to improve the matching quality. We have demonstrated that this method performs well on the OAEI benchmark dataset \cite{simprop}. \par
+\subsubsection{Matching weak informative ontologies} Most existing ontology matching methods are based on the linguistic information. However, some ontologies may lack in regular linguistic information such as natural words and comments. Consequently the linguistic-based methods will not work. Structure-based methods are more practical for such situations. Similarity propagation is a feasible idea to realize the structure-based matching. But traditional propagation strategies do not take into consideration the ontology features and will be faced with effectiveness and performance problems. Having analyzed the classical similarity propagation algorithm, \textit{Similarity Flood}, we proposed a new structure-based ontology matching method \cite{wang2009effective}. This method has two features: (1) It has more strict but reasonable propagation conditions which lead to more efficient matching processes and better alignments. (2) A series of propagation strategies are used to improve the matching quality. We have demonstrated that this method performs well on the OAEI benchmark dataset \cite{wang2009effective}. \par
 However, the similarity propagation is not always perfect. When more alignments are discovered, more incorrect alignments would also be introduced by the similarity propagation. So Lily also uses a strategy to determine when to use the similarity propagation. \par
 \subsubsection{Large scale ontology matching} Matching large ontologies is a challenge due to its significant time complexity. We proposed a new matching method for large ontologies based on reduction anchors \cite{lom_redanc}. This method has a distinct advantage over the divide-and-conquer methods because it does not need to partition large ontologies. In particular, two kinds of reduction anchors, positive and negative reduction anchors, are proposed to reduce the time complexity in matching. Positive reduction anchors use the concept hierarchy to predict the ignorable similarity calculations. Negative reduction anchors use the locality of matching to predict the ignorable similarity calculations. Our experimental results on the real world datasets show that the proposed methods are efficient in matching large ontologies \cite{lom_redanc}. \par
-\subsubsection{Ontology mapping debugging} Lily utilizes a technique named \textit{ontology mapping debugging} to improve the alignment results \cite{om_dbg}. Different from existing methods that focus on finding efficient and effective solutions for the ontology mapping problems, mapping debugging emphasizes on analyzing the mapping results to detect or diagnose the mapping defects. During debugging, some types of mapping errors, such as redundant and inconsistent mappings, can be detected. Some warnings, including imprecise mappings or abnormal mappings, are also locked by analyzing the features of mapping result. More importantly, some errors and warnings can be repaired automatically or can be presented to users with revising suggestions. \par
-\subsubsection{Ontology matching tuning} Lily adopted ontology matching tuning this year. By performing parameter optimization on training datasets \cite{param_tuning}, Lily is able to determine the best parameters for similar tasks. Those data will be stored. When it comes to real matching tasks, Lily will perform statistical calculations on the new ontologies to acquire their features that help it find the most suitable configurations, based on previous training data. In this way, the overall performance can be improved. \par
+\subsubsection{Ontology mapping debugging} Lily utilizes a technique named \textit{ontology mapping debugging} to improve the alignment results \cite{wang2012debugging}. Different from existing methods that focus on finding efficient and effective solutions for the ontology mapping problems, mapping debugging emphasizes on analyzing the mapping results to detect or diagnose the mapping defects. During debugging, some types of mapping errors, such as redundant and inconsistent mappings, can be detected. Some warnings, including imprecise mappings or abnormal mappings, are also locked by analyzing the features of mapping result. More importantly, some errors and warnings can be repaired automatically or can be presented to users with revising suggestions. \par
+\subsubsection{Ontology matching tuning} Lily adopted ontology matching tuning this year. By performing parameter optimization on training datasets \cite{yang2014ontology}, Lily is able to determine the best parameters for similar tasks. Those data will be stored. When it comes to real matching tasks, Lily will perform statistical calculations on the new ontologies to acquire their features that help it find the most suitable configurations, based on previous training data. In this way, the overall performance can be improved. \par
 Currently, ontology matching tuning is not totally automatic. It is difficult to find out typical statistical parameters that distinguish each task from others. Meanwhile, learning from test datasets can be really time-consuming. Our experiment is just a beginning. \par
 
 \subsection{Adaptations made for the evaluation}
-For benchmark, anatomy and conference tasks, Lily is totally automatic, which means Lily can be invoked directly from the SEALS client. It will also determine which strategy to use and the corresponding parameters. For a specific instance matching task, Lily needs to be configured and started up manually, so only matching results were submitted. \par
+For anatomy and conference tasks, Lily is totally automatic, which means Lily can be invoked directly from the SEALS client. It will also determine which strategy to use and the corresponding parameters. For a specific instance matching task, Lily needs to be configured and started up manually, so only matching results were submitted. \par
 
 
 \section{Results}
 \subsection{Anatomy track}
-The anatomy matching task consists of two real large-scale biological ontologies. Table \ref{tab:perf_anatomy} shows the performance of Lily in the Anatomy track on a server with one 3.46 GHz, 6-core CPU and 8GB RAM allocated. The time unit is second (s). \par
+The anatomy matching task consists of two real large-scale biological ontologies. 
+Table \ref{tab:perf_anatomy} shows the performance of Lily in the Anatomy track on a server with one 3.46 GHz, 6-core CPU and 8GB RAM allocated. The time unit is second (s). \par
 \begin{table}[H]
 \caption{The performance in the Anatomy track} \label{tab:perf_anatomy}
 \centering
-\begin{tabular}{c|c|c|c|c}
+\begin{tabular}{c|c|c|c|c|c}
 \Xhline{1.5pt}
-Matcher & Runtime & Precision & Recall & F-Measure \\ \hline
+Matcher & Runtime & Precision & Recall & Recall{+} & F-Measure \\ \hline
 \Xhline{0.5pt}
-Lily & 266s & 0.87 & 0.79 & 0.83 \\
+Lily & 281 & 0.873 & 0.796 & 0.52 & 0.833 \\
 \Xhline{1.5pt}
 \end{tabular}
 \end{table}
-Compared with the result in OAEI 2011 \cite{lily_oaei2011}, there is a small improvement of Precision, Recall and F-Measure, from 0.80, 0.72 and 0.76 to 0.87, 0.79 and 0.83, respectively. One main reason for the improvement is that we found the names of classes not semantically useful, which would confuse Lily when the similarity matrix was calculated. After the names were excluded, better alignments were generated. Besides, there is a significant reduction of the time consumption, from 563s to 266s. This is not only the result of stronger CPU, but also because more optimizations, like parallelization, were applied to the algorithms in Lily. \par
-However, as can be seen in the overall result, Lily lies in the middle position of the rank, which indicates it is still possible to make further progress. Additionally, some key algorithms have not been successfully parallelized. After that is done, the time consumption is expected to be further reduced. \par
+Compared with the result in OAEI 2018 \cite{lily_oaei2018}, there is a sight improvement in Precision, Recall and F-Measure. 
+However, as can be seen in the overall result, Lily lies in the middle position of the rank, which indicates it is still possible to make further progress. 
+External knowledge will be leveraged in the future for the better results.
+Additionally, to futher reduce the time consumption, some key algorithms will be parallelized.
 
 \subsection{Conference track}
 In this track, there are 7 independent ontologies that can be matched with one another. The 21 subtasks are based on given reference alignments. As a result of heterogeneous characters, it is a challenge to generate high-quality alignments for all ontology pairs in this track. \par
@@ -74,36 +107,25 @@ Lily adopted ontology matching tuning for the Conference track this year. Table 
 \begin{table}[H]
 \caption{The performance in the Conference track} \label{tab:perf_conference}
 \centering
-\begin{tabular}{c|c|c|c}
+\begin{tabular}{c|c|c|c|c|c}
 \Xhline{1.5pt}
-Test Case ID & Precision & Recall & F-Measure \\ \hline
+Test Case ID & Precision & Recall & F.5-Measure & F1-measure & F2-measure\\ \hline
 \Xhline{0.5pt}
-cmt-conference & 0.53 & 0.6 & 0.56 \\ \hline
-cmt-confof & 0.80 & 0.25 & 0.38 \\ \hline
-cmt-edas & 0.64 & 0.54 & 0.58 \\ \hline
-cmt-ekaw & 0.55 & 0.55 & 0.55 \\ \hline
-cmt-iasted & 0.57 & 1.00 & 0.73 \\ \hline
-cmt-sigkdd & 0.70 & 0.58 & 0.64 \\ \hline
-conference-confof & 0.67 & 0.53 & 0.59 \\ \hline
-conference-edas & 0.41 & 0.41 & 0.41 \\ \hline
-conference-ekaw & 0.62 & 0.64 & 0.63 \\ \hline
-conference-iasted & 0.67 & 0.43 & 0.52 \\ \hline
-conference-sigkdd & 0.71 & 0.67 & 0.69 \\ \hline
-confof-edas & 0.69 & 0.47 & 0.56 \\ \hline
-confof-ekaw & 0.79 & 0.75 & 0.77 \\ \hline
-confof-iasted & 0.46 & 0.67 & 0.55 \\ \hline
-confof-sigkdd & 0.17 & 0.14 & 0.15 \\ \hline
-edas-ekaw & 0.67 & 0.52 & 0.59 \\ \hline
-edas-iasted & 0.50 & 0.37 & 0.42 \\ \hline
-edas-sigkdd & 0.63 & 0.33 & 0.43 \\ \hline
-ekaw-iasted & 0.50 & 0.80 & 0.62 \\ \hline
-ekaw-sigkdd & 0.50 & 0.46 & 0.48 \\ \hline
-iasted-sigkdd & 0.56 & 0.67 & 0.61 \\ \hline
-\textbf{Average} & \textbf{0.59} & \textbf{0.53} & \textbf{0.56} \\
+ra1-M1 & 0.59 & 0.6 & 0.61 & 0.62 & 0.63 \\ \hline
+ra1-M3 & 0.59 & 0.58 & 0.56 & 0.54 & 0.53 \\ \hline
+ra2-M1 & 0.58 & 0.58 & 0.57 & 0.56 & 0.56 \\ \hline
+ra2-M3 & 0.58 & 0.56 & 0.53 & 0.50 & 0.48 \\ \hline
+rar2-M1 & 0.60 & 0.59 & 0.57 & 0.55 & 0.44 \\ \hline
+rar2-M3 & 0.54 & 0.53 & 0.52 & 0.51 & 0.50 \\ \hline
+
+\textbf{Average} & \textbf{0.58} & \textbf{0.57} & \textbf{0.56} &  \textbf{0.55} & \textbf{0.52}\\
 \Xhline{1.5pt}
 \end{tabular}
 \end{table}
-Compared with the result in OAEI 2011 \cite{lily_oaei2011}, there is a significant improvement of mean Precision, Recall and F-Measure, from 0.36, 0.47 and 0.41 to 0.59, 0.53 and 0.56, respectively. Besides, all the tasks share the same configurations, so it is possible to generate better alignments by assigning the most suitable parameters for each task. We will continue to enhance this feature. \par
+Compared with the result in OAEI 2018 \cite{lily_oaei2018}, there is no obvious progress in mean Precision, Recall and F-Measure. 
+All the tasks share the same configurations, so it is possible to generate better alignments by assigning the most suitable parameters for each task. 
+The performance of Lily was even worse than StringEquiv in some tasks. 
+`We will further analyze this task and our system to find out the reason later.
 
 \subsection{Spimbench track}
 This tack is an instance-mactching tack which aims to match instances of creative works between two boxes. And ontology instances are described through 22 classes, 31 DatatypeProperty and 85 ObjectProperty properties. \par
@@ -157,44 +179,14 @@ On the whole, Lily is a comprehensive ontology matching system with the ability 
 In this paper, we briefly introduced our ontology matching system Lily. The matching process and the special techniques used by Lily were presented, and the alignment results were carefully analyzed. \par
 There is still so much to do to make further progress. Lily needs more optimization to handle large ontologies with limited time and memory. Thus, techniques like parallelization will be applied more. Also, we have just tried out ontology matching tuning. With further research on that, Lily will not only produce better alignments for tracks it was intended for, but also be able to participate in the interactive track. \par
 
-\begin{thebibliography}{}
-\bibitem[1]{lily_oaei2009}
-Peng Wang, Baowen Xu:
-Lily: ontology alignment results for OAEI 2009.
-In The 4th International Workshop on Ontology Matching, Washington Dc., USA (2009)
-\bibitem[2]{lily_oaei2008}
-Peng Wang, Baowen Xu: 
-Lily: Ontology Alignment Results for OAEI 2008. 
-In The Third International Workshop on Ontology Matching, Karlsruhe, Germany (2008)
-\bibitem[3]{lily_oaei2007}
-Peng Wang, Baowen Xu: 
-LILY: the results for the ontology alignment contest OAEI 2007. 
-In The Second International Workshop on Ontology Matching (OM2007), Busan, Korea (2007)
-\bibitem[4]{subgraph}
-Peng Wang, Baowen Xu, Yuming Zhou:
-Extracting Semantic Subgraphs to Capture the Real Meanings of Ontology Elements.
-Journal of Tsinghua Science and Technology, vol. 15(6), pp. 724-733 (2010)
-\bibitem[5]{simprop}
-Peng Wang, Baowen Xu:
-An Effective Similarity Propagation Model for Matching Ontologies without Sufficient or Regular Linguistic Information,
-In The 4th Asian Semantic Web Conference (ASWC2009), Shanghai, China (2009)
-\bibitem[6]{lom_redanc}
-Peng Wang, Yuming Zhou, Baowen Xu:
-Matching Large Ontologies Based on Reduction Anchors.
-In The Twenty-Second International Joint Conference on Artificial Intelligence (IJCAI 2011), Barcelona, Catalonia, Spain (2011)
-\bibitem[7]{om_dbg}
-Peng Wang, Baowen Xu:
-Debugging Ontology Mapping: A Static Approach.
-Computing and Informatics, vol. 27(1), pp. 21–36 (2008)
-\bibitem[8]{lily_oaei2011}
-Peng Wang:
-Lily results on SEALS platform for OAEI 2011.
-Proc. of 6th OM Workshop, pp. 156-162 (2011)
-\bibitem[9]{param_tuning}
-Yang, Pan, Peng Wang, Li Ji, Xingyu Chen, Kai Huang, Bin Yu:
-Ontology Matching Tuning Based on Particle Swarm Optimization: Preliminary Results.
-In The Semantic Web and Web Science, pp. 146-155 (2014)
-\end{thebibliography}
+% ---- Bibliography ----
+%
+% BibTeX users should specify bibliography style 'splncs04'.
+% References will then be sorted and formatted in the correct style.
+%
+\bibliographystyle{splncs04}
+\bibliography{oaei19}
+%
 
 \clearpage
 \end{document}
