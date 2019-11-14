@@ -1,9 +1,5 @@
-% This is samplepaper.tex, a sample chapter demonstrating the
-% LLNCS macro package for Springer Computer Science proceedings;
-% Version 2.20 of 2017/10/04
-%
 \documentclass[runningheads]{llncs}
-%
+\usepackage[T1]{fontenc}
 \usepackage{graphicx}
 \usepackage{makeidx}  % allows for indexgeneration
 \usepackage{url}
@@ -11,6 +7,7 @@
 \usepackage{float}
 \usepackage{multirow}
 \usepackage{cite}
+\usepackage{lipsum}
 % Used for displaying a sample figure. If possible, figure files should
 % be included in EPS format.
 %
@@ -19,27 +16,31 @@
 % \renewcommand\UrlFont{\color{blue}\rmfamily}
 \makeindex
 \begin{document}
-\mainmatter              % start of the contributions
-\title{Lily Results for OAEI 2019}
-\author{Jiangheng Wu, Peng Wang, Zhe Pan, Ce Zhang}
-\tocauthor{Jiangheng Wu, Peng Wang, Zhe Pan, Ce Zhang}
+% \mainmatter              % start of the contributions
+\title{Lily Results for OAEI 2019\thanks{This work is supported by National Key R\&D Program of China (2018YFD1100302). }}
+\author{Jiangheng Wu, Zhe Pan, Ce Zhang, Peng Wang}
+\tocauthor{Jiangheng Wu, Zhe Pan, Ce Zhang, Peng Wang}
 
 \index{Wu, Jiangheng}
-\index{Wang, Peng}
 \index{Pan, Zhe}
 \index{Zhang, Ce}
-
+\index{Wang, Peng}
 \institute{
 	School of Computer Science and Engineering, Southeast University, China \\
 	\email{ \{jiangh\_wu, pwang\} @ seu.edu.cn }
 }
 \maketitle
-
+\newcommand\blfootnote[1]{%
+\begingroup
+\renewcommand\thefootnote{}\footnote{#1}%
+\addtocounter{footnote}{-1}%
+\endgroup
+}
 \begin{abstract}
 This paper presents the results of Lily in the ontology alignment contest OAEI 2019. 
 As a comprehensive ontology matching system, Lily is intended to participate in three tracks of the contest: anatomy, conference, and spimbench. 
 The specific techniques used by Lily will be introduced briefly. 
-The strengths and weaknesses of Lily will also be discussed.
+The strengths and weaknesses of Lily will also be discussed. \blfootnote{\noindent Copyright \copyright\ 2019 for this paper by its authors. Use permitted under Creative Commons License Attribution 4.0 International (CC BY 4.0).}
 \end{abstract}
 
 \section{Presentation of the system}
